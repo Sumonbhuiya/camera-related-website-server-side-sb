@@ -108,6 +108,7 @@ async function run() {
         //call api for save order
         app.post('/orders', async (req, res) => {
             const orders = req.body;
+            orders.createdAt = new Date().toDateString();
             const result = await ordersCollection.insertOne(orders);
             res.json(result)
         })
@@ -132,7 +133,7 @@ async function run() {
             const options = { upsert: true };
             const updateDoc = {
                 $set: {
-                    status: "Accept"
+                    status: "Shipping"
                 },
             };
             const result = await ordersCollection.updateOne(filter, updateDoc, options)
@@ -151,6 +152,12 @@ async function run() {
             const reviews = req.body;
             const result = await reviewCollection.insertOne(reviews);
             res.json(result)
+        })
+        // get api for see review
+        app.get('/review', async (req, res) => {
+            const cursor = reviewCollection.find({});
+            const reviews = await cursor.toArray();
+            res.send(reviews);
         })
     }
     finally {
