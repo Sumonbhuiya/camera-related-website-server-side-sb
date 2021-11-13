@@ -84,6 +84,12 @@ async function run() {
             const result = await usersCollection.updateOne(filter, updateDoc, options);
             res.json(result);
         })
+        //get api for all users
+        app.get('/users', async (req, res) => {
+            const cursor = usersCollection.find({});
+            const users = await cursor.toArray();
+            res.json(users);
+        })
 
         // get api for service
         app.get('/products', async (req, res) => {
@@ -150,6 +156,7 @@ async function run() {
         //call api for give review
         app.post('/review', async (req, res) => {
             const reviews = req.body;
+            reviews.createdAt = new Date().toDateString();
             const result = await reviewCollection.insertOne(reviews);
             res.json(result)
         })
