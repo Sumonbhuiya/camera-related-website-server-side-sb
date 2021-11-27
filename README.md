@@ -1,6 +1,6 @@
 # Welcome to "Digital Security Care" server site
 
-This repo is use for [Client site](https://github.com/programming-hero-web-course-4/niche-website-client-side-Sumonbhuiya).\
+This repo is use for [Client site](https://github.com/Sumonbhuiya/camera-related-website-client-side-sb).\
 View [Website](https://niche-products-9b2bf.web.app/).
 
 ## For this site
